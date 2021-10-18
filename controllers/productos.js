@@ -12,12 +12,14 @@ const controller = {
         });
     },
     consultarProductos:(req, res)=>{
-        Producto.findAll({
-            include:{
-                model:Proveedores,
-                attributes:['proveedor']
-            }
-        })
+        Producto.findAll(
+            // {
+            // include:{
+            //     model:Proveedores,
+            //     attributes:['proveedor']
+            // }
+        //}
+        )
         .then(producto=>{
             if(producto==''){
                 return res.status(200).send({
@@ -86,7 +88,7 @@ const controller = {
             stock: params.stock,
             precioCompra: params.precioCompra,
             precioVenta: params.precioVenta,
-            // idProveedor: params.idProveedor
+            idProveedor: params.idProveedor
         }).then(producto=>{
             return res.status(200).send({
                 mesage: 'Nuevo producto registrado',
@@ -115,7 +117,7 @@ const controller = {
             stock: params.stock,
             precioCompra: params.precioCompra,
             precioVenta: params.precioVenta,
-            // idProveedor: params.idProveedor
+            idProveedor: params.idProveedor
         },{
             where:{
                 id: req.params.id
